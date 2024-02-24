@@ -9,11 +9,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - platform: linux/amd64
+          - platform: amd64
             S6_ARCH: amd64
-          - platform: linux/arm/v7
+          - platform: arm
             S6_ARCH: armhf
-          - platform: linux/arm64
+          - platform: arm64
             S6_ARCH: aarch64
 
     steps:
