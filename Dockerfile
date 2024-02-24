@@ -1,5 +1,8 @@
 ARG S6_ARCH
-FROM oznu/s6-alpine:3.12-${S6_ARCH:-amd64}
+FROM oznu/s6-alpine:3.12-${S6_ARCH:-aarch64}
+
+ENV YOUR_BOT_TOKEN=${YOUR_BOT_TOKEN}
+ENV RECIPIENT_CHAT_ID=${RECIPIENT_CHAT_ID}
 
 RUN apk add --no-cache jq curl bind-tools
 
