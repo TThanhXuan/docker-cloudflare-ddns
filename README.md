@@ -1,4 +1,4 @@
-[![Travis](https://img.shields.io/travis/oznu/docker-cloudflare-ddns.svg)](https://travis-ci.org/oznu/docker-cloudflare-ddns) [![Docker Pulls](https://img.shields.io/docker/pulls/xuantran94/cloudflare-ddns-telegram.svg)](https://hub.docker.com/r/xuantran94/cloudflare-ddns-telegram/)
+[![.github/workflows/docker-image-build.yml](https://github.com/TThanhXuan/docker-cloudflare-ddns-telegram/actions/workflows/docker-image-build.yml/badge.svg?branch=master)](https://github.com/TThanhXuan/docker-cloudflare-ddns-telegram/actions/workflows/docker-image-build.yml)[![Docker Pulls](https://img.shields.io/docker/pulls/xuantran94/cloudflare-ddns-telegram.svg)](https://hub.docker.com/r/xuantran94/cloudflare-ddns-telegram/)
 
 # Docker CloudFlare DDNS
 
@@ -10,9 +10,9 @@ This is a multi-arch image and will run on amd64, aarch64, and armhf devices, in
 
 | Image Tag      | Architecture  | OS            | Size   |
 | :------------- | :-------------| :------------ | :----  |
-| latest         | x64           | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram) |
-| armhf          | arm32v6       | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram:armhf.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram:armhf) |
-| aarch64        | arm64         | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram:aarch64.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram:aarch64) |
+| amd64         | x64           | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram:amd64.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram:amd64) |
+| arm          | arm32v6       | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram:arm.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram:arm) |
+| arm64        | arm64         | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram:arm64.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram:arm64) |
 
 ## Usage
 
@@ -25,7 +25,7 @@ docker run \
   -e SUBDOMAIN=subdomain \
   -e YOUR_BOT_TOKEN=xxxxxx \
   -e RECIPIENT_CHAT_ID=xxxxx \
-  xuantran94/cloudflare-ddns-telegram
+  xuantran94/cloudflare-ddns-telegram:arm64
 ```
 
 ## Parameters
@@ -83,7 +83,9 @@ If you prefer to use [Docker Compose](https://docs.docker.com/compose/):
 version: '3'
 services:
   cloudflare-ddns-telegram:
-    image: xuantran94/cloudflare-ddns-telegram:latest
+    image: xuantran94/cloudflare-ddns-telegram:arm64
+    # image: xuantran94/cloudflare-ddns-telegram:arm
+    # image: xuantran94/cloudflare-ddns-telegram:amd64
     restart: always
     environment:
       - API_KEY=xxxxxxx
@@ -97,7 +99,7 @@ services:
 ## License
 
 Copyright (C) 2017-2020 oznu
-
+Copyright (C) 2024-now xuantran94
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [GNU General Public License](./LICENSE) for more details.
