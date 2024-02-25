@@ -1,4 +1,4 @@
-[![Travis](https://img.shields.io/travis/oznu/docker-cloudflare-ddns.svg)](https://travis-ci.org/oznu/docker-cloudflare-ddns) [![Docker Pulls](https://img.shields.io/docker/pulls/oznu/cloudflare-ddns.svg)](https://hub.docker.com/r/oznu/cloudflare-ddns/)
+[![Travis](https://img.shields.io/travis/oznu/docker-cloudflare-ddns.svg)](https://travis-ci.org/oznu/docker-cloudflare-ddns) [![Docker Pulls](https://img.shields.io/docker/pulls/xuantran94/cloudflare-ddns-telegram.svg)](https://hub.docker.com/r/xuantran94/cloudflare-ddns-telegram/)
 
 # Docker CloudFlare DDNS
 
@@ -10,9 +10,9 @@ This is a multi-arch image and will run on amd64, aarch64, and armhf devices, in
 
 | Image Tag      | Architecture  | OS            | Size   |
 | :------------- | :-------------| :------------ | :----  |
-| latest         | x64           | Alpine Linux  | [![](https://images.microbadger.com/badges/image/oznu/cloudflare-ddns.svg)](https://microbadger.com/images/oznu/cloudflare-ddns) |
-| armhf          | arm32v6       | Alpine Linux  | [![](https://images.microbadger.com/badges/image/oznu/cloudflare-ddns:armhf.svg)](https://microbadger.com/images/oznu/cloudflare-ddns:armhf) |
-| aarch64        | arm64         | Alpine Linux  | [![](https://images.microbadger.com/badges/image/oznu/cloudflare-ddns:aarch64.svg)](https://microbadger.com/images/oznu/cloudflare-ddns:aarch64) |
+| latest         | x64           | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram) |
+| armhf          | arm32v6       | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram:armhf.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram:armhf) |
+| aarch64        | arm64         | Alpine Linux  | [![](https://images.microbadger.com/badges/image/xuantran94/cloudflare-ddns-telegram:aarch64.svg)](https://microbadger.com/images/xuantran94/cloudflare-ddns-telegram:aarch64) |
 
 ## Usage
 
@@ -23,7 +23,9 @@ docker run \
   -e API_KEY=xxxxxxx \
   -e ZONE=example.com \
   -e SUBDOMAIN=subdomain \
-  oznu/cloudflare-ddns
+  -e YOUR_BOT_TOKEN=xxxxxx \
+  -e RECIPIENT_CHAT_ID=xxxxx \
+  xuantran94/cloudflare-ddns-telegram
 ```
 
 ## Parameters
@@ -35,7 +37,8 @@ docker run \
   * `ZONE_FILE` - Path to load your CloudFlare DNS Zone from (e.g. a Docker secret). *If both `ZONE_FILE` and `ZONE` are specified, `ZONE_FILE` takes precedence.*
 * `-e SUBDOMAIN` - A subdomain of the `ZONE` to write DNS changes to. If this is not supplied the root zone will be used.
   * `SUBDOMAIN_FILE` - Path to load your CloudFlare DNS Subdomain from (e.g. a Docker secret). *If both `SUBDOMAIN_FILE` and `SUBDOMAIN` are specified, `SUBDOMAIN_FILE` takes precedence.*
-
+* `-e YOUR_BOT_TOKEN` - Telegram bot token
+* `-e RECIPIENT_CHAT_ID` - Telegram chat id
 ## Optional Parameters
 
 * `-e PROXIED` - Set to `true` to make traffic go through the CloudFlare CDN. Defaults to `false`.
@@ -77,16 +80,18 @@ If you're wanting to set IPv6 records set the envrionment variable `RRTYPE=AAAA`
 If you prefer to use [Docker Compose](https://docs.docker.com/compose/):
 
 ```yml
-version: '2'
+version: '3'
 services:
-  cloudflare-ddns:
-    image: oznu/cloudflare-ddns:latest
+  cloudflare-ddns-telegram:
+    image: xuantran94/cloudflare-ddns-telegram:latest
     restart: always
     environment:
       - API_KEY=xxxxxxx
       - ZONE=example.com
       - SUBDOMAIN=subdomain
       - PROXIED=false
+      - YOUR_BOT_TOKEN=xxxxxx
+      - RECIPIENT_CHAT_ID=xxxxxx
 ```
 
 ## License
